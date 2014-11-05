@@ -1,0 +1,4 @@
+[manifest]
+/lighttpd/lighttpd: ${MODULE_DIR}/lighttpd.so
+/usr/lib/**: ${MODULE_DIR}/lib/**
+/lighttpd/lighttpd.conf: lighttpd.conf

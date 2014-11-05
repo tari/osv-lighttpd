@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+VERSION=1.4.35
+
+wget http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-$VERSION.tar.gz
+tar xvzf lighttpd-$VERSION.tar.gz
+cd lighttpd-$VERSION
+
