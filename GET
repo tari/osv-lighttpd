@@ -6,3 +6,4 @@ wget http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-$VERSION.tar.
 tar xvzf lighttpd-$VERSION.tar.gz
 cd lighttpd-$VERSION
 
+CFLAGS=-fPIC ./configure --prefix=/lighttpd

@@ -1,8 +1,6 @@
 [manifest]
-/lighttpd/lighttpd: ${MODULE_DIR}/lighttpd.so
-/usr/local/lib/**: ${MODULE_DIR}/lib/**
-/lighttpd/lighttpd.conf: ${MODULE_DIR}/lighttpd.conf
-
 /usr/lib/libpcre.so.1: /usr/lib/libpcre.so.1
 
-/www-data/**: ${MODULE_DIR}/www-data/**
+/lighttpd/**: ${MODULE_DIR}/lighttpd/**
+/lighttpd/lighttpd.conf: ${MODULE_DIR}/lighttpd.conf
+/lighttpd/www-data/**: ${MODULE_DIR}/www-data/**
