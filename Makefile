@@ -1,5 +1,5 @@
 
-.PHONY module
+.PHONY: module
 module: lighttpd.so
 
 # TODO automate the libtool replacement process and whatnot
