@@ -31,3 +31,5 @@ lighttpd_mods: lighttpd.so
 	mkdir -p lib
 	cp lighttpd-1.4.35/src/.libs/*.so lib
 
+clean:
+	rm -rf lib lighttpd-1.4.35* lighttpd/ lighttpd.so
