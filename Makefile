@@ -1,9 +1,20 @@
 
+version := lighttpd-1.4.35
+tarball := $(version).tar.gz
+url := http://download.lighttpd.net/lighttpd/releases-1.4.x/$(tarball)
+
 .PHONY: module, lighttpd_mods
 module: lighttpd.so lighttpd_mods
 	rm -rf lighttpd
 	mkdir lighttpd
 	cp -Rv lighttpd.so lib/ lighttpd/
+
+$(tarball):
+	wget  -O $@ $(url)
+
+$(version): $(tarball)
+	tar xzf $^
+	cd $(version) && CFLAGS=-fPIC ./configure --prefix=/lighttpd && make
 
 # This is a terrible hack, literally duplicating the command that libtool runs
 # but tweaked to generate a shared object.
@@ -18,9 +29,10 @@ OBJECTS:=server.o response.o connections.o network.o configfile.o configparser.o
 		http-header-glue.o network_write.o network_linux_sendfile.o \
 		network_freebsd_sendfile.o network_writev.o network_solaris_sendfilev.o \
 		network_openssl.o splaytree.o status_counter.o
-OBJECTS:=$(addprefix lighttpd-1.4.35/src/,$(OBJECTS))
 
-lighttpd.so: $(OBJECTS)
+OBJECTS:=$(addprefix $(version)/src/,$(OBJECTS))
+
+lighttpd.so: $(version) $(OBJECTS)
 	gcc -shared -fPIC -Wall -W -Wshadow -pedantic -std=gnu99 \
 		-o lighttpd.so  -Wl,--export-dynamic  -lpcre -ldl \
 		$(OBJECTS)
